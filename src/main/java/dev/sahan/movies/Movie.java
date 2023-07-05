@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Document(collation = "Movies")
+@Document(collection = "Movies")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,7 +20,7 @@ public class Movie {
     @Id
     private ObjectId id;
 
-    private String imdbid;
+    private String imdbId;
 
     private String title;
 
