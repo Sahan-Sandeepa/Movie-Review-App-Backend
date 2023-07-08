@@ -10,7 +10,7 @@ Tools & Technologies :
 prerequisites :
 #
 <li>Install VS code and install the separate packages</li>
-<li>Nodejs has been is already or installed in your local area</li>
+<li>Java has been is already or installed in your local area</li>
 
 ## Front-end
 
