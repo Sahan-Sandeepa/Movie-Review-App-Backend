@@ -19,7 +19,37 @@ public class Review {
 
     private String body;
 
-    public Review(String body){
+    private String imdbId;
+
+    // Constructor
+    public Review(String body, String imdbId) {
+        this.body = body;
+        this.imdbId = imdbId;
+    }
+
+    // Getters and Setters
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
         this.body = body;
     }
+
+    public String getImdbId() {
+        return imdbId;
+    }
+
+    public void setImdbId(String imdbId) {
+        this.imdbId = imdbId;
+    }
 }
+
