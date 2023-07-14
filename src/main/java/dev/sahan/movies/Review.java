@@ -15,24 +15,22 @@ import lombok.NoArgsConstructor;
 public class Review {
 
     @Id
-    private ObjectId id;
+    private String id;
 
     private String body;
 
     private String imdbId;
 
-    // Constructor
     public Review(String body, String imdbId) {
         this.body = body;
         this.imdbId = imdbId;
     }
 
-    // Getters and Setters
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
