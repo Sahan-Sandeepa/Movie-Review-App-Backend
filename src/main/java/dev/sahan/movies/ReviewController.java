@@ -1,5 +1,6 @@
 package dev.sahan.movies;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,6 +40,12 @@ public class ReviewController {
     @PostMapping
     public ResponseEntity<Review> createReview(@RequestBody Map<String, String> payload) {
         return new ResponseEntity<Review>(reviewService.createReview(payload.get("reviewBody"), payload.get("imdbId")), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/movies/{imdbId}")
+    public ResponseEntity<List<Review>> getMovieReviews(@PathVariable("imdbId") String imdbId) {
+        List<Review> reviews = reviewService.getMovieReviews(imdbId);
+        return new ResponseEntity<>(reviews, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

@@ -21,13 +21,11 @@ public class Review {
 
     private String imdbId;
 
-    // Constructor
     public Review(String body, String imdbId) {
         this.body = body;
         this.imdbId = imdbId;
     }
 
-    // Getters and Setters
     public ObjectId getId() {
         return id;
     }
