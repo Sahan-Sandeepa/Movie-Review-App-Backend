@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,6 +49,28 @@ public class ReviewController {
         return new ResponseEntity<>(reviews, HttpStatus.OK);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Review> editReview(@PathVariable("id") String reviewId,
+            @RequestBody Map<String, String> payload) {
+        ObjectId objectId;
+        try {
+            objectId = new ObjectId(reviewId);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        Optional<Review> optionalReview = reviewRepository.findById(objectId);
+        if (optionalReview.isPresent()) {
+            Review review = optionalReview.get();
+            review.setBody(payload.get("reviewBody"));
+
+            Review updatedReview = reviewRepository.save(review);
+            return ResponseEntity.ok(updatedReview);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteReview(@PathVariable("id") String reviewId) {
         ObjectId objectId;
@@ -75,4 +98,5 @@ public class ReviewController {
             return new ResponseEntity<>("Review not found", HttpStatus.NOT_FOUND);
         }
     }
+    
 }
